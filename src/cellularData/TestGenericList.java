@@ -43,6 +43,9 @@ public class TestGenericList
 		//       and a reference to the next node.
 		//       Define the LinkedList class to be a singly list list of generic Node objects.
 		LinkedList<Country> selectedCountries = new LinkedList<>();
+		Country crait = new Country("Crait");
+		selectedCountries.add(crait);
+
 
 		for (int i = 0; i < requestedSize; i++)
 		{
@@ -167,84 +170,83 @@ public class TestGenericList
      * 	 * Adds a random selection of countries to a generic LinkedList object.
      * @param args  The args for the main
      */
-	public static void main(String[] args) 
-	{		
-		final String FILENAME = "resources/cellular_short_oneDecade.csv";	// test file with shorter number of countries and subscription years
-		//final String FILENAME = "resources/cellular.csv";	// test file with latest set of countries and subscription years
+	public static void main(String[] args) {
+        final String FILENAME = "resources/cellular_short_oneDecade.csv";    // test file with shorter number of countries and subscription years
+        //final String FILENAME = "resources/cellular.csv";	// test file with latest set of countries and subscription years
 
-		// Parses the CSV data file
-		// NOTE: Handle all exceptions in the constructor.
-		//       For full credit, do *not* throw exceptions to main. 
-		CSVReader parser = new CSVReader(FILENAME);
+        // Parses the CSV data file
+        // NOTE: Handle all exceptions in the constructor.
+        //       For full credit, do *not* throw exceptions to main.
+        CSVReader parser = new CSVReader(FILENAME);
 
-		// In class CSVReader the accessor methods only return values of instance variables.
-		String [] countryNames = parser.getCountryNames();
-		int [] yearLabels = parser.getYearLabels();
-		double [][] parsedTable = parser.getParsedTable();		
+        // In class CSVReader the accessor methods only return values of instance variables.
+        String[] countryNames = parser.getCountryNames();
+        int[] yearLabels = parser.getYearLabels();
+        double[][] parsedTable = parser.getParsedTable();
 
 
-		// Holds the data for all Country object read from the input data file.
-		Country [] countries;
+        // Holds the data for all Country object read from the input data file.
+        Country[] countries;
 
-		// Initializes the to the number of entries read by CSVReader.
-		countries = new Country[countryNames.length];
+        // Initializes the to the number of entries read by CSVReader.
+        countries = new Country[countryNames.length];
 
-		// Reference to a Country object
-		Country current;
+        // Reference to a Country object
+        Country current;
 
-		// Go through each country name parsed from the CSV file.
-		for (int countryIndex = 0; countryIndex < countries.length; countryIndex++)
-		{
-			int numberOfYears = yearLabels.length;   
+        // Go through each country name parsed from the CSV file.
+        for (int countryIndex = 0; countryIndex < countries.length; countryIndex++) {
+            int numberOfYears = yearLabels.length;
 
-			// TODO: Initially convert your LinkedList to a generic LinkedList and make sure that list builds
-			// 		 correctly using the original Country constructor which takes the numberOfYears to setup
-			// 		 the array of subscriptions.
-			// NOTE: Once you've verified that your generic LinkedList builds correctly,
-			//       make sure to comment the line below before submitting.
-			//current = new Country(countryNames[countryIndex], numberOfYears);		// version 1
+            // TODO: Initially convert your LinkedList to a generic LinkedList and make sure that list builds
+            // 		 correctly using the original Country constructor which takes the numberOfYears to setup
+            // 		 the array of subscriptions.
+            // NOTE: Once you've verified that your generic LinkedList builds correctly,
+            //       make sure to comment the line below before submitting.
+            //current = new Country(countryNames[countryIndex], numberOfYears);		// version 1
 
-			// TODO: Once you are successful in creating a generic LinkedList of countries, create a
-			// 		 LinkedList of SubscriptionYear in the Country class.
-			// 	     So, your Country class should no longer have an array of SubscriptionYear objects.
-			current = new Country(countryNames[countryIndex]);	// version 2 and final version of Country constructor
-
-			// Go through each year of cellular data read from the CSV file.
-			for (int yearIndex = 0; yearIndex < numberOfYears; yearIndex++)
-			{
-				double [] allSubscriptions = parsedTable[countryIndex];
-				double countryData = allSubscriptions[yearIndex];
-				current.addSubscriptionYear(yearLabels[yearIndex], countryData);
-			}
-
-			// Add the newly created country to the 1D array.
-			countries[countryIndex] = current;
-		}
-
-		// Creates an object of our current application, for testing purposes.		
-		TestGenericList application = new TestGenericList();
-
-		// TODO: Initially, to test your output you may hard-code the number of 
-		//       countries added, and the array positions selected.
-		//		 However, make sure to comment this out before submitting your work.
-		//application.debugListOfCountries(countries);
-
-		// Tests the generic LinkedList class by adding a random number of entries
-		// from the array of Country objects.
-		LinkedList<Country> selectedCountryList = application.createRandomListOfCountries(countries);
-
-		// Output the countries added to the generic LinkedList
-		application.displayGeneratedList(selectedCountryList);
-
-		// Searches the generic LinkedList of countries
-		application.testSearchInList(selectedCountryList);
-
-		// Tests retrieving subscription information 
-		application.testSubscriptionsTotalInList(selectedCountryList);
-
-		// flush the error stream
-		System.err.flush();
-
-		System.out.println("\nDone with TestGenericList.");
-	}
+            // TODO: Once you are successful in creating a generic LinkedList of countries, create a
+            // 		 LinkedList of SubscriptionYear in the Country class.
+            // 	     So, your Country class should no longer have an array of SubscriptionYear objects.
+//			current = new Country(countryNames[countryIndex]);	// version 2 and final version of Country constructor
+//
+//			// Go through each year of cellular data read from the CSV file.
+//			for (int yearIndex = 0; yearIndex < numberOfYears; yearIndex++)
+//			{
+//				double [] allSubscriptions = parsedTable[countryIndex];
+//				double countryData = allSubscriptions[yearIndex];
+//				current.addSubscriptionYear(yearLabels[yearIndex], countryData);
+//			}
+//
+//			// Add the newly created country to the 1D array.
+//			countries[countryIndex] = current;
+//		}
+//
+//		// Creates an object of our current application, for testing purposes.
+//		TestGenericList application = new TestGenericList();
+//
+//		// TODO: Initially, to test your output you may hard-code the number of
+//		//       countries added, and the array positions selected.
+//		//		 However, make sure to comment this out before submitting your work.
+//		//application.debugListOfCountries(countries);
+//
+//		// Tests the generic LinkedList class by adding a random number of entries
+//		// from the array of Country objects.
+//		LinkedList<Country> selectedCountryList = application.createRandomListOfCountries(countries);
+//
+//		// Output the countries added to the generic LinkedList
+//		application.displayGeneratedList(selectedCountryList);
+//
+//		// Searches the generic LinkedList of countries
+//		application.testSearchInList(selectedCountryList);
+//
+//		// Tests retrieving subscription information
+//		application.testSubscriptionsTotalInList(selectedCountryList);
+//
+//		// flush the error stream
+//		System.err.flush();
+//
+//		System.out.println("\nDone with TestGenericList.");
+        }
+    }
 }

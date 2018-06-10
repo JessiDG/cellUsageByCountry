@@ -1,46 +1,53 @@
 package cellularData;
 
+import java.util.Iterator;
+
 /**
  *  This class produces an object type Country with variables for its name, number of years, and an array of SubscriptionYear objects
  * @author Foothill College, Jessica Dickinson Goodman
- * -- Copy constructor isn't making a deep copy
+ * TODO :Whenever a subscription is added to the subscriptions list, check if you need to update minYear and maxYear.
  */
 public class Country {
     private int countOfSubscriptions = 0;
     private String name;
     private int numberOfYears;
-    private SubscriptionYear[] subscriptionsPerYear;
+    private LinkedList<SubscriptionYear> subscriptions;
     private int firstYear = 1960;
     private int lastYear = 2014;
+    private int minYear = 0;
+    private int maxYear = 9999;
+
 
     /**
      * This is the constructor method that only takes a country name string
-     * @param name      The name of the coutnry
+     * @param name      The name of the country
      */
     public Country(String name) {
         this.name = name;
         this.numberOfYears = numberOfYears;
-        subscriptionsPerYear = new SubscriptionYear[numberOfYears];
-//        out.println("This is the error in the constructor:: " + subscriptionsPerYear.toString());
+        this.minYear = 0;
+        this.maxYear = 9999;
+//        subscriptions = new SubscriptionYear[numberOfYears];
+//        out.println("This is the error in the constructor:: " + subscriptions.toString());
     }
 
     /**
      * This is a copy constructor for the Country method
      * @param aCountry      An object of type Country
-     */
-    public Country(Country aCountry){
-        System.out.println("The Country copy constructor is running");
-        countOfSubscriptions = aCountry.countOfSubscriptions;
-        name = aCountry.name;
-        numberOfYears = aCountry.numberOfYears;
-        countOfSubscriptions = aCountry.countOfSubscriptions;
-        subscriptionsPerYear = new SubscriptionYear[aCountry.numberOfYears];
-        for(int i = 0; i < subscriptionsPerYear.length; i++){
-            SubscriptionYear subscriptionsTemp = new SubscriptionYear(aCountry.subscriptionsPerYear[i]);
-            subscriptionsPerYear[i] = subscriptionsTemp;
-
-        }
-    }
+//     */
+//    public Country(Country aCountry){
+//        System.out.println("The Country copy constructor is running");
+//        countOfSubscriptions = aCountry.countOfSubscriptions;
+//        name = aCountry.name;
+//        numberOfYears = aCountry.numberOfYears;
+//        countOfSubscriptions = aCountry.countOfSubscriptions;
+//        subscriptions = new SubscriptionYear[aCountry.numberOfYears];
+//        for(int i = 0; i < subscriptions.length; i++){
+//            SubscriptionYear subscriptionsTemp = new SubscriptionYear(aCountry.subscriptions[i]);
+//            subscriptions[i] = subscriptionsTemp;
+//
+//        }
+//    }
     /**
      * This is the constructor method that takes the name of a country and the number of years
      * @param name              The name of the country
@@ -49,8 +56,8 @@ public class Country {
     public Country(String name, int numberOfYears) {
         this.name = name;
         this.numberOfYears = numberOfYears;
-        subscriptionsPerYear = new SubscriptionYear[numberOfYears];
-//        out.println("This is the error in the constructor:: " + subscriptionsPerYear.toString());
+//        subscriptions = new SubscriptionYear[numberOfYears];
+//        out.println("This is the error in the constructor:: " + subscriptions.toString());
     }
 
     /**
@@ -60,10 +67,10 @@ public class Country {
      * @return                  A boolean indicating if the subscription was able to be added or not
      */
     public boolean addSubscriptionYear(int year, double countryDatum){
-        if (year < 0 || countryDatum < 0)        //TODO: Better test
+        if (year < minYear || year > maxYear || countryDatum < 0)        //TODO: Better test
             return false;
         SubscriptionYear subscription = new SubscriptionYear(year, countryDatum);
-        subscriptionsPerYear[countOfSubscriptions] = subscription;
+        subscriptions.add(subscription);
         countOfSubscriptions ++;
         return true;
     }
@@ -83,9 +90,14 @@ public class Country {
                 requestedStart < firstYear ||
                 requestedEnd > lastYear) {
 
-            for (int i = 0; i < numberOfYears; i++){
-                numSubscriptionsForPeriod += subscriptionsPerYear[i].getSubscriptions();
+
+            Iterator<SubscriptionYear> itr0 = subscriptions.iterator();
+            int i = 0;
+            while(itr0.hasNext()) {
+                numSubscriptionsForPeriod += subscriptions.getIndex(i).getSubscriptions();
+                i++;
             }
+
             String printStatement = String.format("Total subscriptions = %.2f", numSubscriptionsForPeriod);
             throw new IllegalArgumentException("Illegal Argument Request of " +
                     "year range " + requestedStart + "-" + requestedEnd + ". " +
@@ -96,8 +108,12 @@ public class Country {
         else {
             int start = requestedStart - firstYear;
             int end = numberOfYears - (lastYear - requestedEnd);
-            for (int i = start; i < end; i++) {
-                numSubscriptionsForPeriod += subscriptionsPerYear[i].getSubscriptions();
+
+            Iterator<SubscriptionYear> itr = subscriptions.iterator();
+            int i = 0;
+            while(itr.hasNext()) {
+                numSubscriptionsForPeriod += subscriptions.getIndex(i).getSubscriptions();
+                i++;
             }
         }
         return numSubscriptionsForPeriod;
@@ -156,8 +172,8 @@ public class Country {
      * @param someFloat   The new data
      */
     public void setSubscriptionsAtIndex(int someIndex, float someFloat){
-        if (someIndex >= 0 && someIndex < subscriptionsPerYear.length) {
-            subscriptionsPerYear[someIndex].setSubscriptions(someFloat);
+        if (someIndex >= 0 && someIndex < subscriptions.size()) {
+            subscriptions.getIndex(someIndex).setSubscriptions(someFloat);
         }
         else {
             throw new IndexOutOfBoundsException();
@@ -171,9 +187,9 @@ public class Country {
      */
     public String toString() {
         String formattedString = String.format("%1$-60s", name);     //Sets spacing in first row
-        for (int i = 0; i < numberOfYears; i++) {
-            if(subscriptionsPerYear[i] != null) {
-                formattedString += String.format("%1$-15f", subscriptionsPerYear[i].getSubscriptions());
+        for (int year : subscriptions) {
+            if(subscriptions.getIndex(year) != null) {
+                formattedString += String.format("%1$-15f", subscriptions.getIndex(i).getSubscriptions());
             }//Set spacing between years
             else
                 formattedString += null;
