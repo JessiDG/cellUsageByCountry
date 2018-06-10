@@ -1,8 +1,10 @@
-// TODO: For every project create a README file at the top-level directory of 
-//       your project. Your README must include a list of .java files you are 
-//       submitting and a brief description of each. You may ignore IDE specific 
-//       files such as .gitignore 
-
-// NOTE: Alternatively you can create this file in Markdown format. 
-//       See the tutorial:
-//       https://guides.github.com/features/mastering-markdown/
+The files included in this document include:
+/*This package includes:
+- TestCountryList, the provided test file
+- Country, this class produces an object type Country with variables for its
+name, number of years, and an array of SubscriptionYear objects
+- SubscriptionYear, Objects of this class contain a year and the number of
+subscriptions from that year
+- CountryList, a container class with a list of countries
+- CountryNode, a class that allows us to use a linked list data structure to organize our countries
+*/
