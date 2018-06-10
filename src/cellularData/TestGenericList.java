@@ -6,7 +6,7 @@ package cellularData;
  *  the attributes stored in CSVReader object to create objects of type Country class.
  *  Then adds countries to a singly linked list.
  *
- * @author Foothill College, Bita M. [YOUR NAME HERE]
+ * @author Foothill College, Bita M. Jessica Dickinson Goodman
  */
 
 import java.util.Random;
@@ -24,6 +24,7 @@ public class TestGenericList
 	 * Creates a generic linked list. Then based on the user's input,
 	 * adds a random number of countries to the list.
 	 * @param allCountries      An array of Country objects
+     * @return A linked list of type Country
 	 */
 	private LinkedList<Country> createRandomListOfCountries(Country [] allCountries)
 	{
@@ -70,6 +71,7 @@ public class TestGenericList
 
 		// TODO: Implement a nested ListIterator class in your generic LinkedList class
 		java.util.Iterator<Country> iterator = countryList.iterator();
+		//Iterator <SomeType>iterator = subscriptions.iterator();
 
 		// Uses a reference of type ListIterator to traverse your country list and collect country names
 		while(iterator.hasNext())
@@ -159,11 +161,12 @@ public class TestGenericList
 	}
 
 
-	/**
-	 * Uses a CSV to parse a CSV file.
-	 * Adds the data for each country to an array of Country objects.
-	 * Adds a random selection of countries to a generic LinkedList object.
-	 */
+    /**
+     *  Uses a CSV to parse a CSV file.
+     * 	 * Adds the data for each country to an array of Country objects.
+     * 	 * Adds a random selection of countries to a generic LinkedList object.
+     * @param args  The args for the main
+     */
 	public static void main(String[] args) 
 	{		
 		final String FILENAME = "resources/cellular_short_oneDecade.csv";	// test file with shorter number of countries and subscription years
@@ -194,7 +197,7 @@ public class TestGenericList
 		{
 			int numberOfYears = yearLabels.length;   
 
-			// TODO: Initially convert your CountryList to a generic LinkedList and make sure that list builds 
+			// TODO: Initially convert your LinkedList to a generic LinkedList and make sure that list builds
 			// 		 correctly using the original Country constructor which takes the numberOfYears to setup
 			// 		 the array of subscriptions.
 			// NOTE: Once you've verified that your generic LinkedList builds correctly,

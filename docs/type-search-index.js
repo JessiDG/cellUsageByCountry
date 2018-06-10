@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"cellularData","l":"Country"},{"p":"cellularData","l":"CSVReader"},{"p":"cellularData","l":"LinkedList"},{"p":"cellularData","l":"LinkedList.ListIterator"},{"p":"cellularData","l":"Node"},{"p":"cellularData","l":"SubscriptionYear"},{"p":"cellularData","l":"TestGenericList"}]
