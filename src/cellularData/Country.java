@@ -187,9 +187,9 @@ public class Country {
      */
     public String toString() {
         String formattedString = String.format("%1$-60s", name);     //Sets spacing in first row
-        for (int year : subscriptions) {
-            if(subscriptions.getIndex(year) != null) {
-                formattedString += String.format("%1$-15f", subscriptions.getIndex(i).getSubscriptions());
+        for (SubscriptionYear year : subscriptions) {
+            if(year != null) {
+                formattedString += String.format("%1$-15f", year.getSubscriptions());
             }//Set spacing between years
             else
                 formattedString += null;
