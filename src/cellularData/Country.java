@@ -24,10 +24,11 @@ public class Country {
      */
     public Country(String name) {
         this.name = name;
-        this.numberOfYears = numberOfYears;
         this.minYear = 0;
         this.maxYear = 9999;
-//        subscriptions = new SubscriptionYear[numberOfYears];
+        subscriptions = new LinkedList<SubscriptionYear>();
+        this.numberOfYears = subscriptions.size();
+
 //        out.println("This is the error in the constructor:: " + subscriptions.toString());
     }
 
@@ -92,28 +93,30 @@ public class Country {
 
 
             Iterator<SubscriptionYear> itr0 = subscriptions.iterator();
-            int i = 0;
-            while(itr0.hasNext()) {
-                numSubscriptionsForPeriod += subscriptions.getIndex(i).getSubscriptions();
-                i++;
+
+            for(int i = 0; i < subscriptions.size(); i++) {
+                numSubscriptionsForPeriod += itr0.next().getSubscriptions();
             }
 
             String printStatement = String.format("Total subscriptions = %.2f", numSubscriptionsForPeriod);
             throw new IllegalArgumentException("Illegal Argument Request of " +
                     "year range " + requestedStart + "-" + requestedEnd + ". " +
-                    "Valid period for " + getName() + " is " + firstYear + " to " +
-                    lastYear + "." + "\n" + "Total subscriptions = " +
+                    "Valid period for " + getName() + " is " + minYear + " to " +
+                    maxYear + "." + "\n" + "Total subscriptions = " +
                     printStatement + "\n");
         }
         else {
             int start = requestedStart - firstYear;
-            int end = numberOfYears - (lastYear - requestedEnd);
+            int end = subscriptions.size() - (lastYear - requestedEnd);
 
             Iterator<SubscriptionYear> itr = subscriptions.iterator();
-            int i = 0;
-            while(itr.hasNext()) {
-                numSubscriptionsForPeriod += subscriptions.getIndex(i).getSubscriptions();
-                i++;
+
+            for(int i = 0; i < start; i++){
+                itr.next();
+            }
+
+            for(int i = start; i < end; i++) {
+                numSubscriptionsForPeriod += itr.next().getSubscriptions();
             }
         }
         return numSubscriptionsForPeriod;
@@ -156,15 +159,15 @@ public class Country {
      * @param other     The object this is comparing to
      * @return  A boolean if this is an instanceOf Node
      */
-//    public boolean equals(Object other)
-//    {
-//        if (other instanceof Node)
-//        {
-//            Node current = (Node)other;
-//            return current.getData().name.equals(this.name);
-//        }
-//        return false;
-//    }
+    public boolean equals(Object other)
+    {
+        if (other instanceof Country) {
+            Country current = (Country)other;
+            if (this.name.equals(current.name))
+                return true;
+        }
+        return false;
+    }
 
     /**
      * This lets us set the subscriptions

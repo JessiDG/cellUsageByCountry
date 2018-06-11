@@ -4,7 +4,7 @@ package cellularData;
  *  Objects of this class contain a year and the number of subscriptions from that year
  * @author Foothill College, Jessica Dickinson Goodman
  */
-public class SubscriptionYear {
+public class  SubscriptionYear {
     private int year;
     private double subscriptions;
 

@@ -3,7 +3,6 @@ import java.util.Iterator;
 /**
  *  This class produces an object type LinkedList that contains objects of type Node
  * @author Foothill College, Jessica Dickinson Goodman
- * -- Add doesn't make much sense right now
  * A method iterator() that returns object of type ListIterator.
  * Note: You must demonstrate the correct implementation of your iterator.
  * For example, by traversing your LinkedList of SubscriptionYear objects. Reminder to create an Iterator object:
@@ -92,7 +91,7 @@ public class LinkedList<T> implements Iterable<T>{
     public T contains(T data){
         Node<T> walker = head;
         while (walker != null) {
-            if(data.equals(walker))
+            if(data.equals(walker.getData()))
                 return walker.getData();
             walker = walker.getNext();
         }
