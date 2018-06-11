@@ -5,7 +5,6 @@ import java.util.Iterator;
 /**
  *  This class produces an object type Country with variables for its name, number of years, and an array of SubscriptionYear objects
  * @author Foothill College, Jessica Dickinson Goodman
- * TODO :Whenever a subscription is added to the subscriptions list, check if you need to update minYear and maxYear.
  */
 public class Country {
     private int countOfSubscriptions = 0;
@@ -89,7 +88,9 @@ public class Country {
 
         if((requestedEnd - requestedStart) < 0 ||
                 requestedStart < firstYear ||
-                requestedEnd > lastYear) {
+                requestedEnd > lastYear ||
+                requestedStart < minYear ||
+                requestedEnd > maxYear) {
 
 
             Iterator<SubscriptionYear> itr0 = subscriptions.iterator();
@@ -155,7 +156,7 @@ public class Country {
     }
 
     /**
-     * TODO: Issue: How to compare countries
+     * DONE: Issue: How to compare countries
      * @param other     The object this is comparing to
      * @return  A boolean if this is an instanceOf Node
      */

@@ -72,7 +72,7 @@ public class TestGenericList
 		String countryNames = "";
 		int counter = 0;
 
-		// TODO: Implement a nested ListIterator class in your generic LinkedList class
+		// DONE: Implement a nested ListIterator class in your generic LinkedList class
 		Iterator<Country> iterator = countryList.iterator();
 
         // Uses a reference of type ListIterator to traverse your country list and collect country names
@@ -223,7 +223,7 @@ public class TestGenericList
 		// Creates an object of our current application, for testing purposes.
 		TestGenericList application = new TestGenericList();
 
-		// TODO: Initially, to test your output you may hard-code the number of
+		// DONE: Initially, to test your output you may hard-code the number of
 		//       countries added, and the array positions selected.
 		//		 However, make sure to comment this out before submitting your work.
 //		application.debugListOfCountries(countries);

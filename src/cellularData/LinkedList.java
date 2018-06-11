@@ -179,21 +179,38 @@ public class LinkedList<T> implements Iterable<T>{
         }
     }
 
+    /**
+     * This is the Iterator instance
+     * @return
+     */
     public Iterator<T> iterator(){
         return new ListIterator();
     }
 
+    /**
+     * This is the iterator class
+     */
     private class ListIterator implements Iterator<T>
     {
         private Node<T> current;
 
         // initialize this iterator
 
+        /**
+         * This sets the current variable
+         */
         public void setCurrent(){ current = head; }
 
+        /**
+         * This is the list iterator
+         */
         public ListIterator()
         {    current = head; }
 
+        /**
+         * This is the hasNext method
+         * @return  Boolean
+         */
         // test if more elements can be traversed
         public boolean hasNext()
         {
@@ -206,6 +223,10 @@ public class LinkedList<T> implements Iterable<T>{
             return true;
         }
 
+        /**
+         * This is the next method
+         * @return  Generic T
+         */
         // return the next available element
         public T next()
         {
